@@ -1,9 +1,5 @@
 services:
   - type: web
-    name: promptcraft-ai
-    runtime: static
-    staticPublishPath: "."
-    routes:
-      - type: rewrite
-        from: /*
-        to: /index.html
+    name: promptgraft-ai
+    env: static
+    staticPublishPath: ./
