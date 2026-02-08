@@ -1,0 +1,14 @@
+services:
+  - type: static
+    name: promptcraft-ai
+    env: static
+    buildCommand: ""
+    publishPath: "."
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: no-cache
+    routes:
+      - type: rewrite
+        from: /*
+        to: /index.html
