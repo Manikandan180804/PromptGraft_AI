@@ -664,10 +664,24 @@ function toggleAdvancedOptions() {
 
 function toggleTemplatesSidebar() {
     console.log('Toggle templates sidebar called');
-    console.log('Current hidden state:', templatesSidebar.classList.contains('hidden'));
-    templatesSidebar.classList.toggle('hidden');
-    overlay.classList.toggle('active');
-    console.log('New hidden state:', templatesSidebar.classList.contains('hidden'));
+    const isActive = templatesSidebar.classList.contains('active');
+    console.log('Current active state:', isActive);
+
+    if (isActive) {
+        templatesSidebar.classList.remove('active');
+        overlay.classList.remove('active');
+    } else {
+        templatesSidebar.classList.add('active');
+        overlay.classList.add('active');
+
+        // Refresh saved prompts if we're on that tab
+        const activeTab = document.querySelector('.tab-btn.active');
+        if (activeTab && activeTab.dataset.tab === 'saved') {
+            renderSavedPrompts();
+        }
+    }
+
+    console.log('New active state:', templatesSidebar.classList.contains('active'));
 }
 
 function loadTemplate(templateId) {
